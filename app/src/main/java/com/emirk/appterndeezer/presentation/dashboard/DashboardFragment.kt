@@ -1,4 +1,4 @@
-package com.emirk.appterndeezer.ui.dashboard
+package com.emirk.appterndeezer.presentation.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
