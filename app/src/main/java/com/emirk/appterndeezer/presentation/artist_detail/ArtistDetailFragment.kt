@@ -52,10 +52,7 @@ class ArtistDetailFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
-                    if (uiState.isLoading) {
-                        progressBar.visibility = View.VISIBLE
-                    } else {
-                        progressBar.visibility = View.INVISIBLE
+                    if (!uiState.isLoading) {
                         Glide.with(binding.ivArtistDetail)
                             .load(uiState.artistDetail?.picture_xl)
                             .into(binding.ivArtistDetail)
