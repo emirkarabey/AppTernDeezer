@@ -1,4 +1,4 @@
-package com.emirk.appterndeezer.data.remote.dto
+package com.emirk.appterndeezer.data.remote.dto.category
 
 import com.emirk.appterndeezer.domain.ui_model.Category
 import com.google.gson.annotations.SerializedName
