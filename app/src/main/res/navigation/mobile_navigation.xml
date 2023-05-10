@@ -28,5 +28,16 @@
         <argument
             android:name="genreId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_artistsFragment_to_artistDetailFragment"
+            app:destination="@id/artistDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="com.emirk.appterndeezer.presentation.artist_detail.ArtistDetailFragment"
+        android:label="ArtistDetailFragment">
+        <argument
+            android:name="artistId"
+            app:argType="integer" />
     </fragment>
 </navigation>
