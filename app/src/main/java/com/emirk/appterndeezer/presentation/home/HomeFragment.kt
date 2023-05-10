@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.emirk.appterndeezer.databinding.FragmentHomeBinding
 import com.emirk.appterndeezer.presentation.home.adapter.CategoryAdapter
@@ -46,6 +47,7 @@ class HomeFragment : Fragment() {
         categoryAdapter = CategoryAdapter(object : CategoryClickListener {
             override fun onItemClick(categoryId: Int) {
                 Log.v("onitemclick", categoryId.toString())
+                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToArtistsFragment2(categoryId))
             }
         })
         setupRecyclerViews()
