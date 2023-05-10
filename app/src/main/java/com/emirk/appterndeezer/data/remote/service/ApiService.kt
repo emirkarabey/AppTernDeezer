@@ -1,7 +1,11 @@
 package com.emirk.appterndeezer.data.remote.service
 
 import com.emirk.appterndeezer.data.remote.dto.artist.ArtistResponse
+import com.emirk.appterndeezer.data.remote.dto.artist_detail.ArtistAlbumResponse
+import com.emirk.appterndeezer.data.remote.dto.artist_detail.ArtistDetailDto
 import com.emirk.appterndeezer.data.remote.dto.category.CategoryResponse
+import com.emirk.appterndeezer.util.Constants.ARTISTS_ALBUM_END_POINT
+import com.emirk.appterndeezer.util.Constants.ARTISTS_DETAIL_END_POINT
 import com.emirk.appterndeezer.util.Constants.ARTISTS_END_POINT
 import com.emirk.appterndeezer.util.Constants.CATEGORY_END_POINT
 import retrofit2.http.GET
@@ -17,4 +21,14 @@ interface ApiService {
     suspend fun getArtists(
         @Path("genre_id") genreId: String
     ): ArtistResponse
+
+    @GET(ARTISTS_DETAIL_END_POINT)
+    suspend fun getArtistDetail(
+        @Path("artist_id") artistId: String
+    ): ArtistDetailDto
+
+    @GET(ARTISTS_ALBUM_END_POINT)
+    suspend fun getArtistAlbums(
+        @Path("artist_id") artistId: String
+    ): ArtistAlbumResponse
 }
