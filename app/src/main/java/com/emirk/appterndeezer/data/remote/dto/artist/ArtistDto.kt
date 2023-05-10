@@ -1,9 +1,9 @@
-package com.emirk.appterndeezer.data.remote.dto
+package com.emirk.appterndeezer.data.remote.dto.artist
 
-import com.emirk.appterndeezer.domain.ui_model.Category
+import com.emirk.appterndeezer.domain.ui_model.Artist
 import com.google.gson.annotations.SerializedName
 
-data class CategoryDto(
+data class ArtistDto(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")
@@ -18,11 +18,15 @@ data class CategoryDto(
     val picture_small: String,
     @SerializedName("picture_xl")
     val picture_xl: String,
+    @SerializedName("radio")
+    val radio: Boolean,
+    @SerializedName("tracklist")
+    val tracklist: String,
     @SerializedName("type")
     val type: String
 )
 
-fun CategoryDto.toDomain() = Category(
+fun ArtistDto.toDomain() = Artist(
     id = id,
     name = name,
     picture = picture,
@@ -30,5 +34,7 @@ fun CategoryDto.toDomain() = Category(
     picture_medium = picture_medium,
     picture_small = picture_small,
     picture_xl = picture_xl,
+    radio = radio,
+    tracklist = tracklist,
     type = type
 )
