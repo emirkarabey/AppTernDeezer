@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.emirk.appterndeezer.databinding.FragmentArtistsBinding
@@ -49,6 +50,11 @@ class ArtistsFragment : Fragment() {
         artistAdapter = ArtistAdapter(object : ArtistClickListener {
             override fun onItemClick(artistId: Int) {
                 Log.v("onitemclick", artistId.toString())
+                findNavController().navigate(
+                    ArtistsFragmentDirections.actionArtistsFragmentToArtistDetailFragment(
+                        artistId
+                    )
+                )
             }
         })
         setupRecyclerViews()
