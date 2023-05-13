@@ -1,7 +1,7 @@
 package com.emirk.appterndeezer.presentation.album_detail
 
+import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +17,7 @@ import com.emirk.appterndeezer.presentation.album_detail.adapter.AlbumDetailAdap
 import com.emirk.appterndeezer.presentation.album_detail.adapter.AlbumDetailItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 @AndroidEntryPoint
 class AlbumDetailFragment : Fragment() {
@@ -27,6 +28,8 @@ class AlbumDetailFragment : Fragment() {
     private val viewModel: AlbumDetailViewModel by viewModels()
     private lateinit var albumDetailAdapter: AlbumDetailAdapter
     private val args: AlbumDetailFragmentArgs by navArgs()
+    val mediaPlayer = MediaPlayer()
+    var currentPlayingSong: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,9 +49,30 @@ class AlbumDetailFragment : Fragment() {
 
     private fun initRecyclerViewAdapters() {
         albumDetailAdapter = AlbumDetailAdapter(object : AlbumDetailItemClickListener {
-            override fun onItemClick(albumId: Int) {
-                Log.v("onitemclick", albumId.toString())
-
+            override fun onItemClick(preview: String) {
+                if (mediaPlayer.isPlaying && currentPlayingSong == preview) {
+                    // mediaPlayer çalıyor ve tıklanan şarkı zaten çalıyor
+                    mediaPlayer.pause()
+                    mediaPlayer.reset()
+                } else if (mediaPlayer.isPlaying && currentPlayingSong != preview) {
+                    // mediaPlayer çalıyor, ama tıklanan şarkı farklı
+                    mediaPlayer.stop()
+                    mediaPlayer.reset()
+                    mediaPlayer.setDataSource(preview)
+                    mediaPlayer.prepare()
+                    mediaPlayer.start()
+                    currentPlayingSong = preview
+                } else {
+                    // mediaPlayer çalmıyor, tıklanan şarkı çalıyor
+                    try {
+                        mediaPlayer.setDataSource(preview)
+                        mediaPlayer.prepare()
+                        mediaPlayer.start()
+                        currentPlayingSong = preview
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
             }
         })
         setupRecyclerViews()
