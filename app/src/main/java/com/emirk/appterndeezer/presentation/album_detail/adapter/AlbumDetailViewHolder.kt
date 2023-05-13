@@ -20,7 +20,7 @@ class AlbumDetailViewHolder(
         tvDuration.text = String.format("%.2f", duration)
 
         itemView.setOnClickListener {
-            albumDetailItemClickListener.onItemClick(track.id)
+            albumDetailItemClickListener.onItemClick(track.preview)
         }
     }
 }
