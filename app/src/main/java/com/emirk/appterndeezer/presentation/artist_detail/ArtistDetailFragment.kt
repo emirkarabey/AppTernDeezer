@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
@@ -91,6 +92,12 @@ class ArtistDetailFragment : Fragment() {
         artistAlbumAdapter = ArtistAlbumAdapter(object : ArtistAlbumItemClickListener {
             override fun onItemClick(albumId: Int) {
                 Log.v("onitemclick", albumId.toString())
+                findNavController().navigate(
+                    ArtistDetailFragmentDirections.actionArtistDetailFragmentToAlbumDetailFragment(
+                        albumId = albumId
+                    )
+                )
+
             }
         })
         setupRecyclerViews()
