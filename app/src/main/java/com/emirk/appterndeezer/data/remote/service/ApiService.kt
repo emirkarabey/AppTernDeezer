@@ -1,9 +1,11 @@
 package com.emirk.appterndeezer.data.remote.service
 
+import com.emirk.appterndeezer.data.remote.dto.album_detail.SongResponse
 import com.emirk.appterndeezer.data.remote.dto.artist.ArtistResponse
 import com.emirk.appterndeezer.data.remote.dto.artist_detail.ArtistAlbumResponse
 import com.emirk.appterndeezer.data.remote.dto.artist_detail.ArtistDetailDto
 import com.emirk.appterndeezer.data.remote.dto.category.CategoryResponse
+import com.emirk.appterndeezer.util.Constants.ALBUM_DETAIL_END_POINT
 import com.emirk.appterndeezer.util.Constants.ARTISTS_ALBUM_END_POINT
 import com.emirk.appterndeezer.util.Constants.ARTISTS_DETAIL_END_POINT
 import com.emirk.appterndeezer.util.Constants.ARTISTS_END_POINT
@@ -31,4 +33,9 @@ interface ApiService {
     suspend fun getArtistAlbums(
         @Path("artist_id") artistId: String
     ): ArtistAlbumResponse
+
+    @GET(ALBUM_DETAIL_END_POINT)
+    suspend fun getAlbumDetail(
+        @Path("album_id") albumId: String
+    ): SongResponse
 }
