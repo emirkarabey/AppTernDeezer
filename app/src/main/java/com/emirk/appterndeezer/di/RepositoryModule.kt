@@ -31,4 +31,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun albumDetailRepository(AlbumDetailRepositoryImpl: AlbumDetailRepositoryImpl): AlbumDetailRepository
+
+    @Binds
+    @Singleton
+    abstract fun favoriteRepository(FavoriteRepositoryImpl: FavoriteRepositoryImpl): FavoriteRepository
 }
