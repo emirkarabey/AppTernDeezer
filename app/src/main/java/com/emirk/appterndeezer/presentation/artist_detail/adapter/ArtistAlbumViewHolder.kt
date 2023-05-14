@@ -9,17 +9,17 @@ class ArtistAlbumViewHolder(
     private val binding: ItemAlbumBinding,
     private val artistAlbumItemClickListener: ArtistAlbumItemClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(artist: ArtistAlbum) = binding.apply {
+    fun bind(artistAlbum: ArtistAlbum) = binding.apply {
 
         Glide.with(binding.ivAlbum)
-            .load(artist.cover_xl)
+            .load(artistAlbum.cover_xl)
             .into(binding.ivAlbum)
 
-        tvAlbumName.text = artist.title
-        tvReleaseDate.text = artist.release_date
+        tvAlbumName.text = artistAlbum.title
+        tvReleaseDate.text = artistAlbum.release_date
 
         itemView.setOnClickListener {
-            artistAlbumItemClickListener.onItemClick(artist.id)
+            artistAlbumItemClickListener.onItemClick(artistAlbum = artistAlbum)
         }
     }
 }

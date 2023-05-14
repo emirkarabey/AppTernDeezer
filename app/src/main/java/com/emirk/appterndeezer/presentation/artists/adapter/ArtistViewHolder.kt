@@ -18,7 +18,7 @@ class ArtistViewHolder(
         tvArtistName.text = artist.name
 
         itemView.setOnClickListener {
-            artistClickListener.onItemClick(artist.id)
+            artistClickListener.onItemClick(artist = artist)
         }
     }
 }

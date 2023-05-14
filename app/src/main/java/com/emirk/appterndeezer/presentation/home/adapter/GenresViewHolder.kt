@@ -3,22 +3,22 @@ package com.emirk.appterndeezer.presentation.home.adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.emirk.appterndeezer.databinding.ItemCategoryBinding
-import com.emirk.appterndeezer.domain.ui_model.Category
+import com.emirk.appterndeezer.domain.ui_model.Genre
 
-class CategoryViewHolder(
+class GenresViewHolder(
     private val binding: ItemCategoryBinding,
-    private val categoryClickListener: CategoryClickListener
+    private val genresClickListener: GenresClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(category: Category) = binding.apply {
+    fun bind(genre: Genre) = binding.apply {
 
         Glide.with(binding.ivCategory)
-            .load(category.picture_xl)
+            .load(genre.picture_xl)
             .into(binding.ivCategory)
 
-        tvCategoryName.text = category.name
+        tvCategoryName.text = genre.name
 
         itemView.setOnClickListener {
-            categoryClickListener.onItemClick(category.id)
+            genresClickListener.onItemClick(genre = genre)
         }
     }
 }

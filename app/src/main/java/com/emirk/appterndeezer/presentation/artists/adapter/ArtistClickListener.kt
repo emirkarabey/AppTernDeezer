@@ -1,5 +1,7 @@
 package com.emirk.appterndeezer.presentation.artists.adapter
 
+import com.emirk.appterndeezer.domain.ui_model.Artist
+
 interface ArtistClickListener {
-    fun onItemClick(artistId: Int)
+    fun onItemClick(artist: Artist)
 }

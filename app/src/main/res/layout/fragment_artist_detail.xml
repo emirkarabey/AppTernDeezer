@@ -28,6 +28,17 @@
                 android:orientation="vertical"
                 tools:context=".ui.meal_detail.DetailFragment">
 
+                <TextView
+                    android:id="@+id/tvPageName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:gravity="center"
+                    android:padding="@dimen/medium_padding"
+                    android:layout_margin="@dimen/medium_margin" />
+
                 <ImageView
                     android:id="@+id/ivArtistDetail"
                     loadImageFromUrl="@{artist.artistDetail.picture_xl}"

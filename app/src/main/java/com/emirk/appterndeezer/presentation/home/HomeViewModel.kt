@@ -3,7 +3,7 @@ package com.emirk.appterndeezer.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emirk.appterndeezer.common.Resource
-import com.emirk.appterndeezer.domain.use_case.GetCategoryUseCase
+import com.emirk.appterndeezer.domain.use_case.GetGenresUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,13 +14,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getCategoryUseCase: GetCategoryUseCase,
+    private val getGenresUseCase: GetGenresUseCase,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
     fun getCategories() = viewModelScope.launch {
-        getCategoryUseCase.invoke().collect { result ->
+        getGenresUseCase.invoke().collect { result ->
             when (result) {
                 is Resource.Error -> {
                     _uiState.update { state ->
@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
                 }
                 is Resource.Success -> {
                     _uiState.update { state ->
-                        state.copy(category = result.data, isLoading = false)
+                        state.copy(genre = result.data, isLoading = false)
                     }
                 }
             }

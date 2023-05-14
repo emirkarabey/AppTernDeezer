@@ -1,6 +1,6 @@
 package com.emirk.appterndeezer.data.remote.dto.category
 
-import com.emirk.appterndeezer.domain.ui_model.Category
+import com.emirk.appterndeezer.domain.ui_model.Genre
 import com.google.gson.annotations.SerializedName
 
 data class CategoryDto(
@@ -22,7 +22,7 @@ data class CategoryDto(
     val type: String
 )
 
-fun CategoryDto.toDomain() = Category(
+fun CategoryDto.toDomain() = Genre(
     id = id,
     name = name,
     picture = picture,

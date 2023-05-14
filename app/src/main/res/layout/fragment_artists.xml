@@ -19,6 +19,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/tvPageName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:padding="@dimen/medium_padding"
+                android:layout_margin="@dimen/medium_margin"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvArtist"
                 android:layout_width="match_parent"
