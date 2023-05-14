@@ -2,7 +2,7 @@ package com.emirk.appterndeezer.domain.use_case
 
 import com.emirk.appterndeezer.common.Resource
 import com.emirk.appterndeezer.domain.repository.CategoryRepository
-import com.emirk.appterndeezer.domain.ui_model.Category
+import com.emirk.appterndeezer.domain.ui_model.Genre
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -13,7 +13,7 @@ class GetCategoryUseCase @Inject constructor(
     private val repository: CategoryRepository
 ) {
     operator fun invoke(
-    ): Flow<Resource<List<Category>>> = flow {
+    ): Flow<Resource<List<Genre>>> = flow {
         try {
             emit(Resource.Loading())
             val categories = repository.getCategories()
