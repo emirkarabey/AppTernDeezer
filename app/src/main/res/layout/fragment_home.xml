@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/back"
     tools:context=".presentation.home.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -26,7 +27,7 @@
                 android:text="Müzik Kategorileri"
                 android:textSize="25sp"
                 android:visibility="gone"
-                android:textColor="@color/black"
+                android:textColor="@color/titleTextColor"
                 android:gravity="center"
                 android:padding="@dimen/medium_padding"
                 android:layout_margin="@dimen/medium_margin"
