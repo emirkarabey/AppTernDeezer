@@ -36,6 +36,6 @@ class AlbumDetailAdapter(
     }
 
     override fun onBindViewHolder(holder: AlbumDetailViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it) }
+        getItem(position)?.let { holder.bind(it, position) }
     }
 }
