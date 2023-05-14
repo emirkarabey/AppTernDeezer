@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/rvColor"
-    android:layout_margin="@dimen/small_margin">
+    android:layout_margin="@dimen/small_margin"
+    android:background="@color/rvColor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:background="@color/rvColor"
+        android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
@@ -22,7 +22,7 @@
             android:src="@drawable/ic_launcher_background" />
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
@@ -48,17 +48,15 @@
                 android:textSize="18sp" />
 
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/btnFav"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="top|end"
-            android:layout_margin="@dimen/extra_small_margin"
-            android:background="@drawable/fav"
-            android:contentDescription="@string/iv_category_content_description"
-            android:padding="@dimen/double_extra_small_padding" />
-
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/btnFav"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="@dimen/extra_small_margin"
+        android:background="@drawable/fav"
+        android:contentDescription="@string/iv_category_content_description"
+        android:padding="@dimen/double_extra_small_padding" />
 </androidx.cardview.widget.CardView>
