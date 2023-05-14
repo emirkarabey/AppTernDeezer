@@ -1,7 +1,9 @@
 package com.emirk.appterndeezer.presentation.album_detail
 
+import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.emirk.appterndeezer.databinding.FragmentAlbumDetailBinding
+import com.emirk.appterndeezer.domain.ui_model.Track
 import com.emirk.appterndeezer.presentation.album_detail.adapter.AlbumDetailAdapter
 import com.emirk.appterndeezer.presentation.album_detail.adapter.AlbumDetailItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,14 +33,14 @@ class AlbumDetailFragment : Fragment() {
     private val args: AlbumDetailFragmentArgs by navArgs()
     val mediaPlayer = MediaPlayer()
     var currentPlayingSong: String? = null
+    var albumId: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
-        val albumId = args.albumId
-        viewModel.getAlbumDetail(albumId.toString())
+        viewModel.getFavorite()
         return binding.root
     }
 
@@ -45,6 +48,8 @@ class AlbumDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerViewAdapters()
         collectEvent()
+        albumId = args.albumId
+        viewModel.getAlbumDetail(albumId.toString())
     }
 
     private fun initRecyclerViewAdapters() {
@@ -74,6 +79,20 @@ class AlbumDetailFragment : Fragment() {
                     }
                 }
             }
+
+            override fun onFavItemClick(track: Track, position: Int) {
+                if (track.isFav == true) {
+                    track.isFav = false
+                    viewModel.deleteFavorite(track)
+                    albumDetailAdapter.notifyItemChanged(position)
+                } else {
+                    track.isFav = true
+                    viewModel.addFavorite(track)
+                    albumDetailAdapter.notifyItemChanged(position)
+                    Log.v("dataUiState", "add ${track.title}")
+                }
+
+            }
         })
         setupRecyclerViews()
     }
@@ -91,6 +110,7 @@ class AlbumDetailFragment : Fragment() {
                         progressBar.visibility = View.VISIBLE
                     } else {
                         progressBar.visibility = View.INVISIBLE
+                        //Log.v("dataUiState", uiState.albumSong?.get(0)!!.isFav.toString())
                         albumDetailAdapter.submitList(uiState.albumSong)
                     }
 
