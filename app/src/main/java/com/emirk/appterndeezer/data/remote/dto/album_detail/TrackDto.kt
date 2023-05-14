@@ -39,8 +39,7 @@ data class TrackDto(
 )
 
 fun TrackDto.toDomain() = Track(
-    album = album,
-    artist = artist,
+    trackImage = album.cover_xl,
     duration = duration,
     explicit_content_cover = explicit_content_cover,
     explicit_content_lyrics = explicit_content_lyrics,
@@ -54,5 +53,6 @@ fun TrackDto.toDomain() = Track(
     title = title,
     title_short = title_short,
     title_version = title_version,
-    type = type
+    type = type,
+    isFav = null
 )
