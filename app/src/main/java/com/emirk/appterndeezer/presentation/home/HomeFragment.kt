@@ -13,8 +13,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.emirk.appterndeezer.databinding.FragmentHomeBinding
-import com.emirk.appterndeezer.presentation.home.adapter.CategoryAdapter
-import com.emirk.appterndeezer.presentation.home.adapter.CategoryClickListener
+import com.emirk.appterndeezer.domain.ui_model.Genre
+import com.emirk.appterndeezer.presentation.home.adapter.GenresAdapter
+import com.emirk.appterndeezer.presentation.home.adapter.GenresClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,7 +26,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var genresAdapter: GenresAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,10 +45,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecyclerViewAdapters() {
-        categoryAdapter = CategoryAdapter(object : CategoryClickListener {
-            override fun onItemClick(categoryId: Int) {
-                Log.v("onitemclick", categoryId.toString())
-                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToArtistsFragment2(categoryId))
+        genresAdapter = GenresAdapter(object : GenresClickListener {
+            override fun onItemClick(genre: Genre) {
+                Log.v("onitemclick", genre.toString())
+                findNavController().navigate(
+                    HomeFragmentDirections.actionNavigationHomeToArtistsFragment2(
+                        genreId = genre.id, genreName = genre.name
+                    )
+                )
             }
         })
         setupRecyclerViews()
@@ -55,7 +60,7 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerViews() = with(binding) {
         rvCategory.layoutManager = GridLayoutManager(context, 2)
-        rvCategory.adapter = categoryAdapter
+        rvCategory.adapter = genresAdapter
     }
 
     private fun collectEvent() = binding.apply {
@@ -66,7 +71,8 @@ class HomeFragment : Fragment() {
                         progressBar.visibility = View.VISIBLE
                     } else {
                         progressBar.visibility = View.INVISIBLE
-                        categoryAdapter.submitList(uiState.category)
+                        binding.tvPageName.visibility = View.VISIBLE
+                        genresAdapter.submitList(uiState.genre)
                     }
 
                     uiState.userMessage?.let {

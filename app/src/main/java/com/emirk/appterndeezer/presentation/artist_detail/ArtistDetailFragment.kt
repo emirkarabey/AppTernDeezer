@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.emirk.appterndeezer.databinding.FragmentArtistDetailBinding
+import com.emirk.appterndeezer.domain.ui_model.ArtistAlbum
 import com.emirk.appterndeezer.presentation.artist_detail.adapter.ArtistAlbumAdapter
 import com.emirk.appterndeezer.presentation.artist_detail.adapter.ArtistAlbumItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,6 +55,10 @@ class ArtistDetailFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect { uiState ->
                     if (!uiState.isLoading) {
+                        val artistName = args.artistName
+                        binding.tvPageName.text = artistName
+                        binding.tvPageName.visibility = View.VISIBLE
+
                         Glide.with(binding.ivArtistDetail)
                             .load(uiState.artistDetail?.picture_xl)
                             .into(binding.ivArtistDetail)
@@ -90,11 +95,11 @@ class ArtistDetailFragment : Fragment() {
 
     private fun initRecyclerViewAdapters() {
         artistAlbumAdapter = ArtistAlbumAdapter(object : ArtistAlbumItemClickListener {
-            override fun onItemClick(albumId: Int) {
-                Log.v("onitemclick", albumId.toString())
+            override fun onItemClick(artistAlbum: ArtistAlbum) {
+                Log.v("onitemclick", artistAlbum.toString())
                 findNavController().navigate(
                     ArtistDetailFragmentDirections.actionArtistDetailFragmentToAlbumDetailFragment(
-                        albumId = albumId
+                        albumId = artistAlbum.id, albumName = artistAlbum.title
                     )
                 )
 

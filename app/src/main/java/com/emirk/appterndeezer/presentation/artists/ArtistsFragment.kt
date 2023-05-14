@@ -1,7 +1,6 @@
 package com.emirk.appterndeezer.presentation.artists
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.emirk.appterndeezer.databinding.FragmentArtistsBinding
+import com.emirk.appterndeezer.domain.ui_model.Artist
 import com.emirk.appterndeezer.presentation.artists.adapter.ArtistAdapter
 import com.emirk.appterndeezer.presentation.artists.adapter.ArtistClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +28,6 @@ class ArtistsFragment : Fragment() {
     private val viewModel: ArtistsViewModel by viewModels()
     private lateinit var artistAdapter: ArtistAdapter
     private val args: ArtistsFragmentArgs by navArgs()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,11 +47,10 @@ class ArtistsFragment : Fragment() {
 
     private fun initRecyclerViewAdapters() {
         artistAdapter = ArtistAdapter(object : ArtistClickListener {
-            override fun onItemClick(artistId: Int) {
-                Log.v("onitemclick", artistId.toString())
+            override fun onItemClick(artist: Artist) {
                 findNavController().navigate(
                     ArtistsFragmentDirections.actionArtistsFragmentToArtistDetailFragment(
-                        artistId
+                        artistId = artist.id, artistName = artist.name
                     )
                 )
             }
@@ -73,6 +71,9 @@ class ArtistsFragment : Fragment() {
                         progressBar.visibility = View.VISIBLE
                     } else {
                         progressBar.visibility = View.INVISIBLE
+                        val genreName = args.genreName
+                        binding.tvPageName.text = genreName
+                        binding.tvPageName.visibility = View.VISIBLE
                         artistAdapter.submitList(uiState.artist)
                     }
 

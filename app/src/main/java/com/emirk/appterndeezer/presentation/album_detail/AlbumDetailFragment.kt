@@ -1,6 +1,5 @@
 package com.emirk.appterndeezer.presentation.album_detail
 
-import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -110,7 +109,9 @@ class AlbumDetailFragment : Fragment() {
                         progressBar.visibility = View.VISIBLE
                     } else {
                         progressBar.visibility = View.INVISIBLE
-                        //Log.v("dataUiState", uiState.albumSong?.get(0)!!.isFav.toString())
+                        val albumName = args.albumName
+                        binding.tvPageName.text = albumName
+                        binding.tvPageName.visibility = View.VISIBLE
                         albumDetailAdapter.submitList(uiState.albumSong)
                     }
 
