@@ -14,7 +14,7 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun categoryRepository(CategoryRepositoryImpl: CategoryRepositoryImpl): CategoryRepository
+    abstract fun genresRepository(GenresRepositoryImpl: GenresRepositoryImpl): GenresRepository
 
     @Binds
     @Singleton
