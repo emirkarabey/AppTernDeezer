@@ -1,6 +1,6 @@
 package com.emirk.appterndeezer.domain.ui_model
 
-data class Category(
+data class Genre(
     val id: Int,
     val name: String,
     val picture: String,
