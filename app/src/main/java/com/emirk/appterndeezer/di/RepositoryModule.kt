@@ -1,13 +1,7 @@
 package com.emirk.appterndeezer.di
 
-import com.emirk.appterndeezer.data.repository.ArtistAlbumsRepositoryImpl
-import com.emirk.appterndeezer.data.repository.ArtistDetailRepositoryImpl
-import com.emirk.appterndeezer.data.repository.ArtistRepositoryImpl
-import com.emirk.appterndeezer.data.repository.CategoryRepositoryImpl
-import com.emirk.appterndeezer.domain.repository.ArtistAlbumsRepository
-import com.emirk.appterndeezer.domain.repository.ArtistDetailRepository
-import com.emirk.appterndeezer.domain.repository.ArtistRepository
-import com.emirk.appterndeezer.domain.repository.CategoryRepository
+import com.emirk.appterndeezer.data.repository.*
+import com.emirk.appterndeezer.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,4 +27,12 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun artistAlbumsRepository(ArtistAlbumsRepositoryImpl: ArtistAlbumsRepositoryImpl): ArtistAlbumsRepository
+
+    @Binds
+    @Singleton
+    abstract fun albumDetailRepository(AlbumDetailRepositoryImpl: AlbumDetailRepositoryImpl): AlbumDetailRepository
+
+    @Binds
+    @Singleton
+    abstract fun favoriteRepository(FavoriteRepositoryImpl: FavoriteRepositoryImpl): FavoriteRepository
 }
