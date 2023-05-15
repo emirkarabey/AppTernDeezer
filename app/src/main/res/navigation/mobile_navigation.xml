@@ -7,19 +7,61 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.emirk.appterndeezer.ui.home.HomeFragment"
+        android:name="com.emirk.appterndeezer.presentation.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_artistsFragment2"
+            app:destination="@id/artistsFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.emirk.appterndeezer.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
+        android:id="@+id/navigation_favorites"
+        android:name="com.emirk.appterndeezer.presentation.favorites.FavoritesFragment"
+        android:label="@string/title_favorite"
+        tools:layout="@layout/fragment_favorites" />
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.emirk.appterndeezer.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/artistsFragment"
+        android:name="com.emirk.appterndeezer.presentation.artists.ArtistsFragment"
+        android:label="fragment_artists"
+        tools:layout="@layout/fragment_artists">
+        <argument
+            android:name="genreId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_artistsFragment_to_artistDetailFragment"
+            app:destination="@id/artistDetailFragment" />
+        <argument
+            android:name="genreName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="com.emirk.appterndeezer.presentation.artist_detail.ArtistDetailFragment"
+        android:label="ArtistDetailFragment">
+        <argument
+            android:name="artistId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_artistDetailFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
+        <argument
+            android:name="artistName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        android:name="com.emirk.appterndeezer.presentation.album_detail.AlbumDetailFragment"
+        android:label="fragment_album_detail"
+        tools:layout="@layout/fragment_album_detail">
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+        <argument
+            android:name="albumName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

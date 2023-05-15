@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">AppTernDeezer</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_favorite">Favorite</string>
     <string name="title_notifications">Notifications</string>
+
+
+    <string name="iv_category_content_description">Category Image</string>
 </resources>

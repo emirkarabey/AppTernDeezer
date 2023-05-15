@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/rvColor"
+    android:layout_margin="@dimen/small_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/rvColor"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/ivArtist"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:contentDescription="@string/iv_category_content_description"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/tvArtistName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_text_view_height"
+            android:layout_margin="@dimen/extra_small_margin"
+            android:gravity="center"
+            android:text="Ezhel"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
