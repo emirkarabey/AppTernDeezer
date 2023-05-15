@@ -20,7 +20,7 @@ class FavoritesViewHolder(
         tvDuration.text = String.format("%.2f", duration)
 
         itemView.setOnClickListener {
-            favoritesItemClickListener.onItemClick(track.preview)
+            favoritesItemClickListener.onItemClick(track)
         }
 
         btnFav.setOnClickListener {

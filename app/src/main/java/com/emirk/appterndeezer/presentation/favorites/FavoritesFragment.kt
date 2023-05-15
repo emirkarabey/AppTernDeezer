@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -49,26 +50,29 @@ class FavoritesFragment : Fragment() {
 
     private fun initRecyclerViewAdapters() {
         favoritesAdapter = FavoritesAdapter(object : FavoritesItemClickListener {
-            override fun onItemClick(preview: String) {
-                if (mediaPlayer.isPlaying && currentPlayingSong == preview) {
+            override fun onItemClick(track: Track) {
+                if (mediaPlayer.isPlaying && currentPlayingSong == track.preview) {
                     // mediaPlayer çalıyor ve tıklanan şarkı zaten çalıyor
                     mediaPlayer.pause()
                     mediaPlayer.reset()
-                } else if (mediaPlayer.isPlaying && currentPlayingSong != preview) {
+                } else if (mediaPlayer.isPlaying && currentPlayingSong != track.preview) {
                     // mediaPlayer çalıyor, ama tıklanan şarkı farklı
                     mediaPlayer.stop()
                     mediaPlayer.reset()
-                    mediaPlayer.setDataSource(preview)
+                    mediaPlayer.setDataSource(track.preview)
                     mediaPlayer.prepare()
                     mediaPlayer.start()
-                    currentPlayingSong = preview
+                    currentPlayingSong = track.preview
+                    Toast.makeText(requireContext(),"Şuanda çalan şarkı: ${track.title}",Toast.LENGTH_SHORT).show()
                 } else {
                     // mediaPlayer çalmıyor, tıklanan şarkı çalıyor
                     try {
-                        mediaPlayer.setDataSource(preview)
+                        mediaPlayer.setDataSource(track.preview)
                         mediaPlayer.prepare()
                         mediaPlayer.start()
-                        currentPlayingSong = preview
+                        currentPlayingSong = track.preview
+                        Toast.makeText(requireContext(),"Şuanda çalan şarkı: ${track.title}",
+                            Toast.LENGTH_SHORT).show()
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }

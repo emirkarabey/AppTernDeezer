@@ -22,7 +22,7 @@ class AlbumDetailViewHolder(
         tvDuration.text = String.format("%.2f", duration)
 
         itemView.setOnClickListener {
-            albumDetailItemClickListener.onItemClick(track.preview)
+            albumDetailItemClickListener.onItemClick(track)
         }
         Log.v("isFav", track.isFav.toString())
         if (track.isFav == true) {
